@@ -1,5 +1,7 @@
 from __future__ import division
 
+# TODO: pro kazdy label natrenovat vlastni detector - pak by stacilo pro vstupni obrazek porovnat odezvy vsech detetoru
+
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt
@@ -206,7 +208,8 @@ def detect_batch(dataset_path, save_face=False):
             # bboxes.append(bbox)
             face = gray[bbox[1]:bbox[1] + bbox[3], bbox[0]:bbox[0] + bbox[2]]
             faces.append(face)
-            names.append(fname.split('/')[-2])
+            name = fname.split('/')[-1].split('.')[0]
+            names.append(name)
 
 
     # print 'total # of images: ', n_files
@@ -339,7 +342,7 @@ def run(test_im, dataset_path, lbps_fname, faces_fname, scaleFactor=1.1, minNeig
         for (i, (score, name)) in enumerate(results):
             plt.subplot(2, 3, i+2)
             plt.imshow(faces[name], 'gray')
-            plt.title("#%d. %s: %.4f" % (i + 1, name, score))
+            plt.title("#%d %s: %.4f" % (i + 1, name, score))
         plt.show()
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -352,7 +355,7 @@ if __name__ == '__main__':
     faces_fname = '/home/tomas/Dropbox/Data/celeb_dataset/dataset_faces.pkl'
     lbps_fname = '/home/tomas/Dropbox/Data/celeb_dataset/dataset_lbp.pkl'
 
-    # test_fname = '/home/tomas/Dropbox/Data/celeb_dataset/testing_set/natalie_portman_test1.jpg'
-    test_fname = '/home/tomas/Dropbox/Data/celeb_dataset/celebrities/natalie_portman/natalie_portman_05.jpg'
+    test_fname = '/home/tomas/Dropbox/Data/celeb_dataset/testing_set/natalie_portman_test1.jpg'
+    # test_fname = '/home/tomas/Dropbox/Data/celeb_dataset/celebrities/natalie_portman/natalie_portman_05.jpg'
     test_im = cv2.imread(test_fname, 0)
     run(test_im, dataset_path, lbps_fname, faces_fname)
