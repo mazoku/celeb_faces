@@ -1,6 +1,7 @@
 from __future__ import division
 
 # TODO: zkontrolovat detekovane obliceje
+# TODO: optimizer vratit adam
 
 import os
 from collections import namedtuple, defaultdict
