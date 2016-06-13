@@ -1,6 +1,6 @@
 from __future__ import division
 
-# TODO: pro kazdy label natrenovat vlastni detector - pak by stacilo pro vstupni obrazek porovnat odezvy vsech detetoru
+# TODO: kNN klasifikace - kazda trida ma nekolik (desitky) zastupcu, pocita se vzdalenost ke kazdemu a pak se urci kNN
 
 import numpy as np
 import cv2
